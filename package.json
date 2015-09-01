@@ -1,0 +1,35 @@
+{
+  "name": "metpack",
+  "version": "0.1.0",
+  "description": "Meteor ecosystem with Webpack",
+  "scripts": {
+    "build-client": "./node_modules/.bin/webpack -p --progress --colors --config settings/webpack.client.js",
+    "build-lib": "./node_modules/.bin/webpack -p --progress --colors --config settings/webpack.lib.js",
+    "build-server": "./node_modules/.bin/webpack -p --progress --colors --config settings/webpack.server.js",
+    "build": "npm run build-client && npm run build-server && npm run build-lib",
+    "watch-client": "rm -f ./meteor/build/client/bundle.js && ./node_modules/.bin/webpack-dev-server --config settings/webpack.client.development.js --devtool eval --progress --colors --hot --inline --port 9000 --content-base meteor/build/client",
+    "watch-lib": "./node_modules/.bin/webpack -p --progress --colors --config settings/webpack.lib.js --watch",
+    "watch-server": "./node_modules/.bin/webpack -p --progress --colors --config settings/webpack.server.js --watch",
+    "watch": "npm run watch-client & npm run watch-server & npm run watch-lib",
+    "start": "npm run watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/firegoby/metpack"
+  },
+  "author": "Chris Batchelor (@cwbat)",
+  "license": "MIT",
+  "dependencies": {
+    "babel": "^5.8.21",
+    "babel-core": "^5.8.22",
+    "babel-loader": "^5.3.2",
+    "babel-runtime": "^5.8.20",
+    "extract-text-webpack-plugin": "^0.8.2",
+    "request": "^2.60.0",
+    "webpack": "^1.11.0"
+  },
+  "devDependencies": {
+    "react-hot-loader": "^1.2.8",
+    "webpack-dev-server": "^1.10.1"
+  }
+}

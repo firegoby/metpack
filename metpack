@@ -1,0 +1,15 @@
+#!/bin/bash
+if [ "$1" == "production" ] || [ "$1" == "prod" ]
+then
+    npm run build
+    cd meteor
+    exec meteor --settings ../settings/meteor.production.json
+elif [ "$1" != "" ]
+then
+    cd meteor
+    exec meteor "${@}"
+else
+    npm start &
+    cd meteor
+    exec meteor --settings ../settings/meteor.development.json
+fi
